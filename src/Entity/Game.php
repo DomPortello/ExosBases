@@ -29,10 +29,10 @@ class Game
     private string $description;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private string $thumbnailCover;
+    private ?string $thumbnailCover;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private string $thumbnailLogo;
+    private ?string $thumbnailLogo;
 
     #[ORM\ManyToMany(targetEntity: Language::class)]
     private Collection $languages;

@@ -19,6 +19,38 @@ class GameRepository extends ServiceEntityRepository
         parent::__construct($registry, Game::class);
     }
 
+    /**
+     * @param int $limit
+     * @param bool $isOrderedByName
+     * @return array
+     */
+
+    public function findAlphaGames(int $limit = 10, bool $isOrderedByName = false):array {
+        $qb = $this->createQueryBuilder('game')
+            ->select('game');
+
+        if ($isOrderedByName){
+            $qb->orderBy('game.name', 'ASC');
+        }else{
+            $qb->orderBy('game.name', 'DESC');
+        }
+
+        return $qb->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+    }
+
+
+    public function findLastGames(): array {
+        return $this->createQueryBuilder('game')
+            ->select('game')
+            ->orderBy('game.publishedAt', 'ASC')
+            ->setMaxResults(4)
+            ->getQuery()
+            ->getResult();
+    }
+
+
     // /**
     //  * @return Game[] Returns an array of Game objects
     //  */

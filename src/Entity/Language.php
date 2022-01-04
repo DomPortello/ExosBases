@@ -16,8 +16,8 @@ class Language
     #[ORM\Column(type: 'string', length: 255)]
     private string $name;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private string $flag;
+//    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+//    private ?string $flag;
 
     public function getId(): ?int
     {
@@ -36,15 +36,15 @@ class Language
         return $this;
     }
 
-    public function getFlag(): ?string
-    {
-        return $this->flag;
-    }
-
-    public function setFlag(?string $flag): self
-    {
-        $this->flag = $flag;
-
-        return $this;
-    }
+//    public function getFlag(): ?string
+//    {
+//        return $this->flag;
+//    }
+//
+//    public function setFlag(?string $flag): self
+//    {
+//        $this->flag = $flag;
+//
+//        return $this;
+//    }
 }

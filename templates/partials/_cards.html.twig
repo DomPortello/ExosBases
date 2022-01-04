@@ -1,0 +1,22 @@
+<div class="container my-5 g-4">
+    <div class="row">
+        {% for entity in entities %}
+            <div class="col-3 my-3">
+                <a href="{{ path('game_show', {'id': entity.id}) }}" class="text-decoration-none">
+                    <div class="card bg-opacity-25 bg-secondary">
+                        <div class="container-img">
+                            <img src="{{ entity.thumbnailCover }}" class="card-img-top img-fluid h-100" alt="...">
+                        </div>
+                        <div class="card-footer">
+                            <p class="card-text logo">{{ entity.name }}</p>
+                            <span class="card-text logo">{{ entity.price }} €</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
