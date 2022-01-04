@@ -40,7 +40,7 @@ class Game
     #[ORM\ManyToMany(targetEntity: Genre::class, inversedBy: 'games')]
     private Collection $genres;
 
-    #[ORM\OneToMany(mappedBy: 'game', targetEntity: Comments::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'game', targetEntity: Comment::class, orphanRemoval: true)]
     private Collection $comments;
 
     public function __construct()
@@ -176,14 +176,14 @@ class Game
     }
 
     /**
-     * @return Collection|Comments[]
+     * @return Collection|Comment[]
      */
     public function getComments(): Collection
     {
         return $this->comments;
     }
 
-    public function addComment(Comments $comment): self
+    public function addComment(Comment $comment): self
     {
         if (!$this->comments->contains($comment)) {
             $this->comments[] = $comment;
@@ -193,7 +193,7 @@ class Game
         return $this;
     }
 
-    public function removeComment(Comments $comment): self
+    public function removeComment(Comment $comment): self
     {
         if ($this->comments->removeElement($comment)) {
             // set the owning side to null (unless already changed)
