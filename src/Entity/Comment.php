@@ -20,14 +20,14 @@ class Comment
     #[ORM\Column(type: 'text')]
     private string $content;
 
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: 'integer', options:["default" => 0])]
     private int $upVotes;
 
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: 'integer' ,options:["default" => 0])]
     private int $downVotes;
 
     #[ORM\ManyToOne(targetEntity: Account::class, inversedBy: 'comments')]
-    private $account;
+    private Account $account;
 
     #[ORM\ManyToOne(targetEntity: Game::class, inversedBy: 'comments')]
     #[ORM\JoinColumn(nullable: false)]

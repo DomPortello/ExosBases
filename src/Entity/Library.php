@@ -14,10 +14,10 @@ class Library
     #[ORM\Column(type: 'integer')]
     private int $id;
 
-    #[ORM\Column(type: 'boolean')]
+    #[ORM\Column(type: 'boolean', options:["default" => false])]
     private bool $installed;
 
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: 'integer', options:["default" => 0])]
     private int $gameTime;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
