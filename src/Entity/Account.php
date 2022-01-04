@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AccountRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AccountRepository::class)]
@@ -22,8 +24,20 @@ class Account
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private string $nickname;
 
-    #[ORM\Column(type: 'integer', options:["default" => 0])]
-    private int $wallet;
+    #[ORM\Column(type: 'float', options:["default" => 0])]
+    private float $wallet;
+
+    #[ORM\OneToMany(mappedBy: 'account', targetEntity: Comments::class)]
+    private Collection $comments;
+
+    #[ORM\OneToMany(mappedBy: 'account', targetEntity: Library::class, orphanRemoval: true)]
+    private Collection $libraries;
+
+    public function __construct()
+    {
+        $this->comments = new ArrayCollection();
+        $this->libraries = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -66,14 +80,74 @@ class Account
         return $this;
     }
 
-    public function getWallet(): ?int
+    public function getWallet(): ?float
     {
         return $this->wallet;
     }
 
-    public function setWallet(int $wallet): self
+    public function setWallet(float $wallet): self
     {
         $this->wallet = $wallet;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Comments[]
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comments $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setAccount($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comments $comment): self
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getAccount() === $this) {
+                $comment->setAccount(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Library[]
+     */
+    public function getLibraries(): Collection
+    {
+        return $this->libraries;
+    }
+
+    public function addLibrary(Library $library): self
+    {
+        if (!$this->libraries->contains($library)) {
+            $this->libraries[] = $library;
+            $library->setAccount($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLibrary(Library $library): self
+    {
+        if ($this->libraries->removeElement($library)) {
+            // set the owning side to null (unless already changed)
+            if ($library->getAccount() === $this) {
+                $library->setAccount(null);
+            }
+        }
 
         return $this;
     }
