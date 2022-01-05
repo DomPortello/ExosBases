@@ -1,0 +1,22 @@
+account:
+  index:
+    table:
+      name: 'Nom'
+      nickname: 'Pseudo'
+      email: 'Email'
+      nb_games: 'Nb Jeux'
+      wallet: 'Portefeuille'
+
+navbar:
+  home: 'Accueil'
+  game: 'Jeux'
+  comments: 'Commentaires'
+  account: 'Comptes'
+  search: 'Rechercher...'
+
+homepage:
+  firstH2: 'Les jeux du moment'
+  secondH2: 'Les dernières sorties'
+  thirdH2: 'Avis des utilisateurs'
+  fourthH2: "D'autres jeux"
+  price: '€'

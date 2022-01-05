@@ -1,0 +1,22 @@
+account:
+  index:
+    table:
+      name: 'Name'
+      nickname: 'Nickname'
+      email: 'Email'
+      nb_games: 'Nb Games'
+      wallet: 'Wallet'
+
+navbar:
+  home: 'Home'
+  game: 'Games'
+  comments: 'Comments'
+  account: 'Account'
+  search: 'Search...'
+
+homepage:
+  firstH2: 'Best games'
+  secondH2: 'Last games'
+  thirdH2: 'User comments'
+  fourthH2: "Other games"
+  price: '$'

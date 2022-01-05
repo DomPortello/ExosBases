@@ -1,0 +1,49 @@
+{% if col is not defined %}
+    {% set col = 'col-20' %}
+{% endif %}
+<div class="row">
+    {% for entity in entities %}
+
+        <div class="{{ col }} my-3">
+            <div class="myCard">
+                <a href="{{ path('game_show', {'id': entity.id}) }}" class="clickable text-center text-decoration-none">
+                    <img src="{{ entity.thumbnailCover }}" alt="{{ entity.name }}" class="h-100">
+                    <div class="shadows">
+                        <div class="price">{{ entity.price }} {{ 'homepage.price'|trans}} </div>
+                    </div>
+                </a>
+                <div class="gameTitle">
+                    {{ entity.name }}
+                </div>
+            </div>
+        </div>
+
+    {% endfor %}
+</div>
+
+
+{# <div class="container my-5 g-4"> #}
+{# {% if col is not defined %} #}
+{# {% set col = 0 %} #}
+{# {% endif %} #}
+{# <div class="row  {{ col }} "> #}
+{# {% for entity in entities %} #}
+{# <div class="col my-3"> #}
+{# <a href="{{ path('game_show', {'id': entity.id}) }}" class="text-center text-decoration-none"> #}
+{# <div class="card justify-content-between bg-opacity-25 bg-secondary h-100"> #}
+{# <div class="container-img position-relative"> #}
+{# <img src="{{ entity.thumbnailCover }}" class="card-img-top img-fluid h-100" alt="..."> #}
+{# <span class="card-text price d-block position-absolute">{{ entity.price }} €</span> #}
+{# </div> #}
+{# <div class="card-text"> #}
+{# <p class="mb-0 card-text logo">{{ entity.name }}</p> #}
+{# </div> #}
+{# </div> #}
+{# </a> #}
+{# </div> #}
+{# {% endfor %} #}
+{# </div> #}
+{# </div> #}
+
+
+

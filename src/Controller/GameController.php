@@ -41,14 +41,15 @@ class GameController extends AbstractController
     #[Route('/', name: 'game_index')]
     public function index(): Response
     {
-        dump($this->gameRepository->findLastGames());
+        dump($this->gameRepository->findBestGames());
         return $this->render('game/index.html.twig', [
             'controller_name' => 'GameController',
-            'games' => $this->gameRepository->findAlphaGames()
+//            'games' => $this->gameRepository->findAlphaGames(10,true)
+            'games' => $this->gameRepository->findAll()
         ]);
     }
 
-    #[Route('/{id}', name: 'game_show')]
+    #[Route('/detail/{id}', name: 'game_show')]
 
     public function show(Game $game): Response
     {

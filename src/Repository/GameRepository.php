@@ -3,8 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Game;
+use App\Entity\Library;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use phpDocumentor\Reflection\Types\This;
 
 /**
  * @method Game|null find($id, $lockMode = null, $lockVersion = null)
@@ -48,6 +50,33 @@ class GameRepository extends ServiceEntityRepository
             ->setMaxResults(4)
             ->getQuery()
             ->getResult();
+    }
+
+    /**
+     * @param int $limit
+     * @return array
+     */
+
+    public function findBestGames(int $limit = 10): array {
+        return $this->createQueryBuilder('game')
+            ->select('game')
+            ->join(Library::class, 'libraries', 'WITH', 'libraries.game = game')
+            ->groupBy('game')
+            ->orderBy('count(game)', 'DESC')
+            ->getQuery()
+            ->setMaxResults($limit)
+            ->getResult();
+    }
+
+    public function findAllNames(string $name): array
+    {
+        return $this->createQueryBuilder('game')
+            ->select('game.name', 'game.id')
+            ->where('game.name LIKE :name')
+            ->setParameter('name', '%' . $name . '%')
+            ->getQuery()
+            ->getResult()
+            ;
     }
 
 

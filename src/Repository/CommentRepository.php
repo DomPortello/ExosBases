@@ -21,9 +21,11 @@ class CommentRepository extends ServiceEntityRepository
 
     public function findlastComments(): array {
         return $this->createQueryBuilder('comment')
-            ->select('comment')
-            ->orderBy('comment.publishedAt', 'DESC')
-            ->setMaxResults(5)
+            ->select('comment', 'game', 'account')
+            ->join('comment.game', 'game')
+            ->join('comment.account', 'account')
+            ->orderBy('comment.createdAt', 'DESC')
+            ->setMaxResults(4)
             ->getQuery()
             ->getResult();
     }

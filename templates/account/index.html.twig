@@ -7,10 +7,10 @@
     <div class="container">
         <ul>
             {% for account in accounts %}
+                <li>{{ 'account.index.table.name'|trans }}</li>
                 <li>{{ account.name }}</li>
             {% endfor %}
         </ul>
     </div>
-
 
 {% endblock %}
