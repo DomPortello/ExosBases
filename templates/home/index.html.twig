@@ -6,16 +6,16 @@
 
     <div class="container my-5">
         <h2>{{ 'homepage.firstH2'|trans }}</h2>
-        {% include 'partials/_cards_games.html.twig' with {'entities': bestGames} %}
+        {% include 'partials/cards/_cards_games.html.twig' with {'entities': bestGames} %}
 
-        <h2>{{ 'homepage.secondH2'|trans }}</h2>
-        {% include 'partials/_cards_games.html.twig' with {'entities': lastGames, 'col': 'col-25'} %}
+        <h2 class="my-3">{{ 'homepage.secondH2'|trans }}</h2>
+        {% include 'partials/cards/_cards_games.html.twig' with {'entities': lastGames, 'col': 'col-25'} %}
 
-        <h2>{{ 'homepage.thirdH2'|trans }}</h2>
-        {% include 'partials/_cards_comments.html.twig' with {'entities': lastComments} %}
+        <h2 class="my-3">{{ 'homepage.thirdH2'|trans }}</h2>
+        {% include 'partials/cards/_cards_comments.html.twig' with {'entities': lastComments} %}
 
-        <h2>{{ 'homepage.fourthH2'|trans }}</h2>
-        {% include 'partials/_cards_games.html.twig' with {'entities': alphaGames} %}
+        <h2 class="my-3">{{ 'homepage.fourthH2'|trans }}</h2>
+        {% include 'partials/cards/_cards_games.html.twig' with {'entities': alphaGames} %}
     </div>
 
 {% endblock %}

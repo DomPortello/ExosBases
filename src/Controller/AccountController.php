@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AccountController extends AbstractController
 {
-    #[Route('/accounts', name: 'account_index')]
+    #[Route('/{_locale}/accounts', name: 'account_index')]
     public function index(AccountRepository $accountRepository): Response
     {
         return $this->render('account/index.html.twig', [

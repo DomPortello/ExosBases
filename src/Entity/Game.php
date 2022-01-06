@@ -7,6 +7,7 @@ use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JetBrains\PhpStorm\Pure;
 
 #[ORM\Entity(repositoryClass: GameRepository::class)]
 class Game
@@ -43,7 +44,10 @@ class Game
     #[ORM\OneToMany(mappedBy: 'game', targetEntity: Comment::class, orphanRemoval: true)]
     private Collection $comments;
 
-    public function __construct()
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $slug;
+
+    #[Pure] public function __construct()
     {
         $this->languages = new ArrayCollection();
         $this->genres = new ArrayCollection();
@@ -201,6 +205,18 @@ class Game
                 $comment->setGame(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(?string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

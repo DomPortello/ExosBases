@@ -1,0 +1,15 @@
+<div class="card bg-dark text-light mb-3">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="{{ entity.thumbnailCover }}" class="img-fluid rounded-start" alt="{{ entity.name }}">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body vertical-align-middle">
+                <h5 class="card-title logo">{{ entity.name }}</h5>
+                <p class="card-text">{{ entity.description }}</p>
+                <p class="card-text logo fs-5">{{ entity.price }} {{ 'homepage.price'|trans }}</p>
+                <p class="card-footer"><small class="text-muted">{{ entity.publishedAt|date ('m-Y') }}</small></p>
+            </div>
+        </div>
+    </div>
+</div>

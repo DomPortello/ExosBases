@@ -5,14 +5,22 @@ namespace App\Controller;
 use App\Repository\CommentRepository;
 use App\Repository\GameRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\Routing\Annotation\Route;
+
 
 class HomeController extends AbstractController
 {
-    #[Route('/', name: 'home')]
-    public function index(GameRepository $gameRepository, CommentRepository $commentRepository): Response
+    #[Route('/{_locale}', name: 'home')]
+    public function index(GameRepository $gameRepository, CommentRepository $commentRepository, Request $request, string $_locale): Response
     {
+        dump($request->getUri());
+        $_locale = $request->getLocale();
+        $request->setLocale($_locale);
+
+
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'alphaGames' => $gameRepository->findAlphaGames(),
@@ -21,4 +29,13 @@ class HomeController extends AbstractController
             'lastComments' => $commentRepository->findlastComments(),
         ]);
     }
+
+//    #[Route('/{_locale}', name: 'locale-change', requirements: ['_locale' => 'en|fr'])]
+//
+//    public function language(Request $request, RequestEvent $event){
+//
+//        $locale = $request->getLocale();
+//
+//        reset()
+//    }
 }
