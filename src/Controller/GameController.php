@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Game;
 use App\Repository\GameRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -19,6 +20,7 @@ class GameController extends AbstractController
      */
     public function __construct(GameRepository $gameRepository)
     {
+
         $this->gameRepository = $gameRepository;
     }
 
@@ -39,8 +41,13 @@ class GameController extends AbstractController
     }
 
     #[Route('/', name: 'game_index')]
-    public function index(): Response
+    public function index(Request $request): Response
     {
+        $url = $request->getPathInfo();
+        dump($url);
+
+        dump( $request->getLocale($url));
+
         return $this->render('game/index.html.twig', [
             'controller_name' => 'GameController',
 //            'games' => $this->gameRepository->findAlphaGames(10,true)
@@ -50,8 +57,10 @@ class GameController extends AbstractController
 
     #[Route('/detail/{id}', name: 'game_show')]
 
-    public function show(Game $game): Response
+    public function show(Game $game, Request $request): Response
     {
+
+        dump($request->attributes->get('_route_params'));
         return $this->render('game/show.html.twig', [
             'game' => $game
         ]);

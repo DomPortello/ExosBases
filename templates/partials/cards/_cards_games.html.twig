@@ -6,7 +6,7 @@
 
         <div class="{{ col }} my-3">
             <div class="myCard">
-                <a href="{{ path('game_show', {'id': entity.id}) }}" class="clickable text-center text-decoration-none">
+                <a href="{{ path('game_show', {'_locale': 'en', 'id': entity.id}) }}" class="clickable text-center text-decoration-none">
                     <img src="{{ entity.thumbnailCover }}" alt="{{ entity.name }}" class="h-100">
                     <div class="shadows">
                         <div class="price">{{ entity.price }} {{ 'homepage.price'|trans}} </div>

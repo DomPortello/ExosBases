@@ -20,13 +20,43 @@
                 </li>
             </ul>
             <ul class="navbar-nav">
+{#                {{ dump(set route_parameters = app.request.attributes.get('_route_params')) }}#}
                 <li class="nav-item me-2">
-                    <a href="{{ path('home', {'_locale': 'en'}) }}">
+                    {% set newParams = [] %}
+                    {% for key, param in app.request.attributes.get('_route_params') %}
+{#                        {{ dump(key) }}#}
+{#                        {{ dump(key) }}#}
+                        {% if key == '_locale' %}
+                            {% set newParams = newParams|merge({'_locale': 'en'}) %}
+                        {% else %}
+                            {{ dump(key) }}
+                            {% set newParams = newParams|merge({'id': param}) %}
+                        {% endif %}
+                    {% endfor %}
+
+
+                    <a href="{{ path(app.request.attributes.get('_route'),
+                        newParams )
+                    }}">
                     <img class="flag" src="{{ asset('build/uk.png') }}" alt="en">
                     </a>
                 </li>
                 <li class="nav-item me-2">
-                    <a href="{{ path('home', {'_locale': 'fr'}) }}">
+                    {% set newParams = [] %}
+                    {% for key, param in app.request.attributes.get('_route_params') %}
+                        {#                        {{ dump(key) }}#}
+                        {% if key == '_locale' %}
+                            {% set newParams = newParams|merge({'_locale': 'fr'}) %}
+                            {#                            {% set newParams[key] = 'en' %}#}
+                        {% else %}
+                            {% set newParams = newParams|merge({'id': param}) %}
+                            {#                            {% set newParams[key] = param %}#}
+                        {% endif %}
+                    {% endfor %}
+                    <a href="{{ path(app.request.attributes.get('_route'),
+                        newParams
+                        )
+                    }}">
                     <img class="flag" src="{{ asset('build/fr.png') }}" alt="fr">
                     </a>
                 </li>
