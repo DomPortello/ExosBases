@@ -24,13 +24,10 @@
                 <li class="nav-item me-2">
                     {% set newParams = [] %}
                     {% for key, param in app.request.attributes.get('_route_params') %}
-{#                        {{ dump(key) }}#}
-{#                        {{ dump(key) }}#}
                         {% if key == '_locale' %}
                             {% set newParams = newParams|merge({'_locale': 'en'}) %}
                         {% else %}
-                            {{ dump(key) }}
-                            {% set newParams = newParams|merge({'id': param}) %}
+                            {% set newParams = newParams|merge({'slug': param}) %}
                         {% endif %}
                     {% endfor %}
 
@@ -44,27 +41,20 @@
                 <li class="nav-item me-2">
                     {% set newParams = [] %}
                     {% for key, param in app.request.attributes.get('_route_params') %}
-                        {#                        {{ dump(key) }}#}
                         {% if key == '_locale' %}
                             {% set newParams = newParams|merge({'_locale': 'fr'}) %}
-                            {#                            {% set newParams[key] = 'en' %}#}
                         {% else %}
-                            {% set newParams = newParams|merge({'id': param}) %}
-                            {#                            {% set newParams[key] = param %}#}
+                            {% set newParams = newParams|merge({'slug': param}) %}
                         {% endif %}
                     {% endfor %}
                     <a href="{{ path(app.request.attributes.get('_route'),
-                        newParams
-                        )
-                    }}">
+                        newParams ) }}">
                     <img class="flag" src="{{ asset('build/fr.png') }}" alt="fr">
                     </a>
                 </li>
             </ul>
             <form class="d-flex">
                 <input type="text" class="form-control" placeholder="{{ 'navbar.search'|trans }}" data-games-search>
-{#                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">#}
-{#                <button class="btn btn-outline-success" type="submit">Search</button>#}
             </form>
         </div>
     </div>

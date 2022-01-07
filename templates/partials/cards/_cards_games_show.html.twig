@@ -1,14 +1,19 @@
 <div class="card bg-dark text-light mb-3">
     <div class="row">
         <div class="col-md-4">
-            <img src="{{ entity.thumbnailCover }}" class="img-fluid rounded-start" alt="{{ entity.name }}">
+            <img src="{{ entity.thumbnailCover }}" class="img-fluid img-show rounded-start" alt="{{ entity.slug }}">
         </div>
         <div class="col-md-8">
             <div class="card-body vertical-align-middle">
-                <h5 class="card-title logo">{{ entity.name }}</h5>
-                <p class="card-text">{{ entity.description }}</p>
-                <p class="card-text logo fs-5">{{ entity.price }} {{ 'homepage.price'|trans }}</p>
-                <p class="card-footer"><small class="text-muted">{{ entity.publishedAt|date ('m-Y') }}</small></p>
+                <h5 class="card-title logo text-center fs-1 mb-3">{{ entity.name }}</h5>
+                <div class="text-center justify-content-center">
+                    {% for language in entity.languages  %}
+                        <img class="mb-2 mx-2" src="{{ language.flag }}" title="{{ language.name }}" alt="{{ language.name }}">
+                    {% endfor %}
+                </div>
+                <p class="card-text my-4">{{ entity.description }}</p>
+                <p class="card-text text-center logo fs-3">{{ entity.price }} {{ 'homepage.price'|trans }}</p>
+                <p class="card-text text-end"><small class="text-muted">{{ entity.publishedAt|date ('d-m-Y') }}</small></p>
             </div>
         </div>
     </div>

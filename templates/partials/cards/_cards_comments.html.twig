@@ -4,7 +4,7 @@
             <div class="col-3 my-3">
                 <div class="card bg-opacity-25 bg-secondary h-100">
                     <div class="card-header bg-dark">
-                        <a href="{{ path('game_show', {'id': entity.game.id}) }}" class="text-decoration-none logo">{{ entity.game.name }}</a>
+                        <a href="{{ path('game_show', {'slug': entity.game.slug}) }}" class="text-decoration-none logo">{{ entity.game.name }}</a>
                     </div>
                     <div class="card-title">
                         <p>{{ entity.account.name }}</p>
@@ -20,29 +20,3 @@
         {% endfor %}
     </div>
 </div>
-
-{#{% if col is not defined %}#}
-{#    {% set col = 'col-25' %}#}
-{#{% endif %}#}
-{#<div class="row">#}
-{#    {% for entity in entities %}#}
-
-{#        <div class="{{ col }} my-3">#}
-{#            <div class="myCard">#}
-{#                <a href="{{ path('game_show', {'id': entity.game.id}) }}" class="clickable text-center text-decoration-none">{{ entity.game.name }}#}
-{#                </a>#}
-{#                <div class="card-text">#}
-{#                    {{ entity.account.name }}#}
-{#                </div>#}
-{#                <div class="card-title">#}
-{#                    {{ entity.content }}#}
-{#                </div>#}
-{#                <div class="gameTitle">#}
-{#                    {{ entity.createdAt|date('d-m-Y') }}#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-
-{#    {% endfor %}#}
-{#</div>#}
-

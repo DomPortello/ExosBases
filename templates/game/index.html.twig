@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class="container my-5">
-        <h2>Tous les jeux</h2>
+        <h2>{{ 'games.top'|trans }}</h2>
         {% include 'partials/cards/_cards_games.html.twig' with {'entities': games} %}
     </div>
 {% endblock %}

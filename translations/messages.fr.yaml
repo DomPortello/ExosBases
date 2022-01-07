@@ -7,6 +7,9 @@ account:
       nb_games: 'Nb Jeux'
       wallet: 'Portefeuille'
 
+games:
+  top: 'Tous les jeux'
+
 navbar:
   home: 'Accueil'
   game: 'Jeux'

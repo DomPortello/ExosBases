@@ -43,26 +43,18 @@ class GameController extends AbstractController
     #[Route('/', name: 'game_index')]
     public function index(Request $request): Response
     {
-        $url = $request->getPathInfo();
-        dump($url);
-
-        dump( $request->getLocale($url));
-
         return $this->render('game/index.html.twig', [
             'controller_name' => 'GameController',
-//            'games' => $this->gameRepository->findAlphaGames(10,true)
-            'games' => $this->gameRepository->findAll()
+            'games' => $this->gameRepository->findAlphaGames(50, true)
         ]);
     }
 
-    #[Route('/detail/{id}', name: 'game_show')]
-
-    public function show(Game $game, Request $request): Response
+    #[Route('/detail/{slug}', name: 'game_show')]
+    public function show(Game $game, Request $request, string $slug): Response
     {
-
-        dump($request->attributes->get('_route_params'));
+        dump($this->gameRepository->findBySlug($slug));
         return $this->render('game/show.html.twig', [
-            'game' => $game
+            'game' => $this->gameRepository->findBySlug($slug)
         ]);
     }
 }

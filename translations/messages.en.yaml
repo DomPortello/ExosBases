@@ -7,6 +7,9 @@ account:
       nb_games: 'Nb Games'
       wallet: 'Wallet'
 
+games:
+  top: 'All games'
+
 navbar:
   home: 'Home'
   game: 'Games'

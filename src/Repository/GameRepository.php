@@ -79,6 +79,21 @@ class GameRepository extends ServiceEntityRepository
             ;
     }
 
+    public function findBySlug(string $slug): Game
+    {
+        return $this->createQueryBuilder('game')
+            ->select('game', 'languages', 'genres', 'comments', 'account')
+            ->join('game.genres', 'genres')
+            ->join('game.languages', 'languages')
+            ->join('game.comments', 'comments')
+            ->join('comments.account', 'account')
+            ->where('game.slug = :slug')
+            ->setParameter('slug', $slug)
+            ->orderBy('comments.createdAt', 'DESC')
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
 
     // /**
     //  * @return Game[] Returns an array of Game objects
