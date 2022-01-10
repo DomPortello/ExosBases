@@ -6,9 +6,13 @@ account:
       email: 'Email'
       nb_games: 'Nb Games'
       wallet: 'Wallet'
-
+  new:
+    title: 'New account'
 games:
   top: 'All games'
+
+comment:
+  madeBy: 'Made by %username% at %date%'
 
 navbar:
   home: 'Home'
@@ -23,3 +27,7 @@ homepage:
   thirdH2: 'User comments'
   fourthH2: "Other games"
   price: '$'
+
+common:
+  see_all: 'See all'
+  button.submit: 'Submit'

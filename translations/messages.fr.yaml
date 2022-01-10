@@ -6,9 +6,14 @@ account:
       email: 'Email'
       nb_games: 'Nb Jeux'
       wallet: 'Portefeuille'
+  new:
+    title: 'Nouveau compte'
 
 games:
   top: 'Tous les jeux'
+
+comment:
+  madeBy: 'Fait par %username% le %date%'
 
 navbar:
   home: 'Accueil'
@@ -23,3 +28,7 @@ homepage:
   thirdH2: 'Avis des utilisateurs'
   fourthH2: "D'autres jeux"
   price: '€'
+
+common:
+  see_all: 'Voir tout'
+  button.submit: 'Envoyer'

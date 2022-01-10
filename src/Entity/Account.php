@@ -37,6 +37,7 @@ class Account
     {
         $this->comments = new ArrayCollection();
         $this->libraries = new ArrayCollection();
+        $this->wallet = 0.0;
     }
 
     public function getId(): ?int

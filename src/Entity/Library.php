@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\LibraryRepository;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use function Symfony\Component\Translation\t;
 
 #[ORM\Entity(repositoryClass: LibraryRepository::class)]
 class Library
@@ -30,6 +31,13 @@ class Library
     #[ORM\ManyToOne(targetEntity: Account::class, inversedBy: 'libraries')]
     #[ORM\JoinColumn(nullable: false)]
     private Account $account;
+
+    public function __construct()
+    {
+        $this->gameTime = 0.0;
+        $this->installed = 0.0;
+    }
+
 
     public function getId(): ?int
     {

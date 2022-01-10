@@ -7,13 +7,13 @@
                         <a href="{{ path('game_show', {'slug': entity.game.slug}) }}" class="text-decoration-none logo">{{ entity.game.name }}</a>
                     </div>
                     <div class="card-title">
-                        <p>{{ entity.account.name }}</p>
+
                     </div>
                     <div class="card-text">
                         <p>{{ entity.content }}</p>
                     </div>
-                        <div class="card-footer">
-                            <p class="card-text logo">{{ entity.createdAt | date ('d-m-Y') }}</p>
+                        <div class="card-footer h-25">
+                            <p class="card-text logo">{{ 'comment.madeBy'|trans({'%username%' : entity.account.name, '%date' : entity.createdAt |date ('d-m-Y') }) }}</p>
                         </div>
                     </div>
             </div>
